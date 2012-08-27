@@ -14,6 +14,7 @@ public class Auction
     // The number that will be given to the next lot entered
     // into this auction.
     private int nextLotNumber;
+   
 
     /**
      * Create a new auction.
@@ -117,5 +118,21 @@ public class Auction
           //System.out.println(lot.getHighestBid());
         }
     }
-
+    
+    public ArrayList<Lot> getUnsold()
+    {
+        ArrayList<Lot> unsold = new ArrayList();
+        
+        for(Lot lot : lots)
+        {
+            if(lot.getHighestBid()==null)
+            {
+                int nextLotNumber = lot.getNumber();
+                String description   = lot.getDescription();
+                unsold.add(new Lot(nextLotNumber, description));
+            }
+        }
+        return unsold;
+    }
+    
 }
